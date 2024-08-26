@@ -18,7 +18,7 @@ class BookList extends Component {
         const filtered = this.props.array.filter((libro) => {
             return libro.title.toLowerCase().includes(this.state.searched.toLowerCase())
         })
-        const filtered2 = filtered.length > 30 ? filtered.slice(0, 30) : filtered
+        const filtered2 = filtered.length > 40 ? filtered.slice(0, 40) : filtered
         return (
             <Container fluid className='mb-5'>
                 <Row>
