@@ -13,7 +13,6 @@ class CommentArea extends Component {
     }
 
     componentDidUpdate = (prevProps) => {
-        console.log('Ciao')
         if (prevProps.selected !== this.props.selected) {
             this.setState({
                 isLoaded: false
@@ -70,7 +69,7 @@ class CommentArea extends Component {
                         </Alert>
                     ) : (
                         <>
-                            <CommentsList array={this.state.comments} />
+                            <CommentsList array={this.state.comments} reload={this.reloadComments}/>
                             <AddComment id={this.props.selected} reload={this.reloadComments}/>
                         </>
                     )

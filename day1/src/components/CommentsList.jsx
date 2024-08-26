@@ -1,9 +1,6 @@
 import { Component } from "react";
 import { Button, ListGroup } from 'react-bootstrap'
 class CommentsList extends Component {
-    state = {
-        reloaded: false
-    }
     handleClick = async (e, id) => {
         e.preventDefault()
         const sure = window.confirm('Sei sicuro?')
@@ -19,7 +16,7 @@ class CommentsList extends Component {
                 })
                 if (response.ok) {
                     alert('Recensione cancellata correttamente')
-                    this.setState({ reloaded: true })
+                    this.props.reload(true)
                 } else {
                     throw new Error('Errore nella cancellazione del commento')
                 }
