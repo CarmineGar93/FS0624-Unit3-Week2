@@ -56,7 +56,7 @@ class CommentArea extends Component {
     }
     render() {
         return (
-            <div className="my-3 position-sticky top-custom">
+            <div className="my-3">
                 {
                     !this.props.selected ? (
                         <div>

@@ -21,8 +21,8 @@ class BookList extends Component {
         const filtered2 = filtered.length > 40 ? filtered.slice(0, 40) : filtered
         return (
             <Container fluid className='mb-5'>
-                <Row>
-                    <Col xs={9}>
+                <Row className="vh-100">
+                    <Col xs={6} lg={8} className="overflow-y-scroll vh-100">
                         <Row className="j justify-content-center">
                             <Col xs={12} md={6}>
                                 <h2 className="text-center">Cerca i tuoi libri</h2>
@@ -35,7 +35,7 @@ class BookList extends Component {
                                 </Form>
                             </Col>
                         </Row>
-                        <Row xs={1} sm={2} lg={4} className='gy-4'>
+                        <Row xs={1} sm={2} lg={3} xl={4} className='gy-4'>
                             {
                                 filtered2.map((libro, i) => {
                                     return (
@@ -47,7 +47,7 @@ class BookList extends Component {
                             }
                         </Row>
                     </Col>
-                    <Col xs={3} className=" position-relative py-5">
+                    <Col xs={6} lg={4} className=" overflow-y-scroll vh-100 py-5">
                         <CommentArea selected={this.state.selected}/>
                     </Col>
                 </Row>
