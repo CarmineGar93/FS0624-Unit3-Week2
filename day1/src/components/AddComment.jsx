@@ -33,6 +33,13 @@ class AddComment extends Component {
             if (send.ok) {
                 alert('Recensione salvata correttamente')
                 this.props.reload(true)
+                this.setState({
+                    newComment: {
+                        comment: '',
+                        rate: '1',
+                        elementId: this.props.id
+                    }
+                })
             } else {
                 throw new Error('Errore nel salvataggio del commento')
             }
@@ -55,7 +62,7 @@ class AddComment extends Component {
                     <Form.Label className="mb-1">Rating</Form.Label>
                     <Form.Select 
                     aria-label="Default select example"
-                    value={this.state.newComment.rating}
+                    value={this.state.newComment.rate}
                     onChange={(e) => this.handleChange(e, 'rate')}>
                         <option>1</option>
                         <option>2</option>
