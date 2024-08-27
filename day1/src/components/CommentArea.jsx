@@ -11,24 +11,10 @@ function CommentArea({ selected }) {
     const[reload, setReload] = useState(false)
     const[hasMounted, setHasMounted] = useState(false);
 
-/*     componentDidUpdate = (prevProps, prevState) => {
-        if (prevProps.selected !== this.props.selected) {
-            this.setState({
-                isLoaded: false
-            })
-            this.fetchComments()
-        }
-        if (prevState.reload !== this.state.reload) {
-            this.fetchComments()
-            this.setState({
-                isLoaded: false
-            })
-        }
-    } */
-    
     const reloadComments = () => {
         setReload(!reload)
     }
+    
     const fetchComments = async () => {
         try {
             const URL = 'https://striveschool-api.herokuapp.com/api/comments/'
