@@ -12,20 +12,22 @@ class CommentArea extends Component {
         reload: false
     }
 
-    componentDidUpdate = (prevProps) => {
+    componentDidUpdate = (prevProps, prevState) => {
         if (prevProps.selected !== this.props.selected) {
             this.setState({
                 isLoaded: false
             })
             this.fetchComments()
         }
-        if (this.state.reload) {
+        if (prevState.reload !== this.state.reload) {
             this.fetchComments()
-            this.setState({reload: false})
+            this.setState({
+                isLoaded: false
+            })
         }
     }
-    reloadComments = (boolean) => {
-        this.setState({reload: boolean})
+    reloadComments = () => {
+        this.setState({reload: !this.state.reload})
     }
     fetchComments = async () => {
         try {

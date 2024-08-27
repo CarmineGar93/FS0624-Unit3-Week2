@@ -18,7 +18,7 @@ class CommentsList extends Component {
                 })
                 if (response.ok) {
                     alert('Recensione cancellata correttamente')
-                    this.props.reload(true)
+                    this.props.reload()
                 } else {
                     throw new Error('Errore nella cancellazione del commento')
                 }

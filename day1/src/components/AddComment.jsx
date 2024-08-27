@@ -32,7 +32,7 @@ class AddComment extends Component {
             })
             if (send.ok) {
                 alert('Recensione salvata correttamente')
-                this.props.reload(true)
+                this.props.reload()
                 this.setState({
                     newComment: {
                         comment: '',
