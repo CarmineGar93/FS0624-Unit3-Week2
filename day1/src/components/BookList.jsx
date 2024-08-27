@@ -16,7 +16,6 @@ function BookList({ array }) {
     const filtered = array.filter((libro) => {
         return libro.title.toLowerCase().includes(searched.toLowerCase())
     })
-    console.log(filtered)
     const filtered2 = filtered.length > 40 ? filtered.slice(0, 40) : filtered
     return (
         <Container fluid className='mb-5'>
