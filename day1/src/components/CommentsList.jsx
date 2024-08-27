@@ -1,9 +1,9 @@
-import { Component } from "react";
 import { Button, ListGroup } from 'react-bootstrap'
 import logostar from '../star.svg'
 import trashlogo from '../trash.svg'
-class CommentsList extends Component {
-    handleClick = async (e, id) => {
+
+function CommentsList({ array, reload }) {
+    const handleClick = async (e, id) => {
         e.preventDefault()
         const sure = window.confirm('Sei sicuro?')
         if (sure) {
@@ -18,7 +18,7 @@ class CommentsList extends Component {
                 })
                 if (response.ok) {
                     alert('Recensione cancellata correttamente')
-                    this.props.reload()
+                    reload()
                 } else {
                     throw new Error('Errore nella cancellazione del commento')
                 }
@@ -27,41 +27,40 @@ class CommentsList extends Component {
             }
         }
     }
-    render() {
-        return (
-            <ListGroup>
-                {
-                    this.props.array.length === 0 ? (
-                        <ListGroup.Item>Nessun commento per questo libro</ListGroup.Item>
-                    ) : (
-                        this.props.array.map((libro) => {
-                            const star = []
-                            for (let i = 0; i < libro.rate; i++) {
-                                star.push(<span key={i} className="d-flex align-items-center"><img src={logostar} alt=""/></span>)
-                            }
-                            return (
-                                <ListGroup.Item key={libro._id} className="d-flex align-items-center">
-                                    <div className="ms-1">
-                                        <div className="d-flex align-items-center">
-                                            <i>Rate: &nbsp;</i>
-                                            {
-                                                star.map((stars) => {
-                                                    return stars
-                                                })
-                                            }
-                                        </div>
-
-                                        <span><i>Commento:</i> {libro.comment} </span>
+    return (
+        <ListGroup>
+            {
+                array.length === 0 ? (
+                    <ListGroup.Item>Nessun commento per questo libro</ListGroup.Item>
+                ) : (
+                    array.map((libro) => {
+                        const star = []
+                        for (let i = 0; i < libro.rate; i++) {
+                            star.push(<span key={i} className="d-flex align-items-center"><img src={logostar} alt="" /></span>)
+                        }
+                        return (
+                            <ListGroup.Item key={libro._id} className="d-flex align-items-center">
+                                <div className="ms-1">
+                                    <div className="d-flex align-items-center">
+                                        <i>Rate: &nbsp;</i>
+                                        {
+                                            star.map((stars) => {
+                                                return stars
+                                            })
+                                        }
                                     </div>
-                                    <Button onClick={(e) => this.handleClick(e, libro._id)} variant="danger" className="ms-auto"><img alt="" src={trashlogo}/></Button>
-                                </ListGroup.Item>)
-                        })
-                    )
-                }
 
-            </ListGroup>
-        )
-    }
+                                    <span><i>Commento:</i> {libro.comment} </span>
+                                </div>
+                                <Button onClick={(e) => handleClick(e, libro._id)} variant="danger" className="ms-auto"><img alt="" src={trashlogo} /></Button>
+                            </ListGroup.Item>)
+                    })
+                )
+            }
+
+        </ListGroup>
+    )
 }
+
 
 export default CommentsList

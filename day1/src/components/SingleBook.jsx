@@ -1,24 +1,22 @@
-import { Component } from 'react'
 import { Button, Card } from 'react-bootstrap'
 
 
-class SingleBook extends Component {
-    handleClick = () => {
-        this.props.retrieve(this.props.libro.asin)
+function SingleBook({ libro, retrieve, selected }) {
+    const handleClick = () => {
+        retrieve(libro.asin)
     }
 
-    render() {
-        const cardClicked = this.props.selected === this.props.libro.asin ? 'shadowing h-100' : 'h-100'
-        return (
-            <Card className={cardClicked}>
-                <Card.Img variant="top" src={this.props.libro.img} onClick={(e) => this.handleClick(e)} />
-                <Card.Body className='d-flex flex-column justify-content-between'>
-                    <Card.Title className='fs-5'>{this.props.libro.title}</Card.Title>
-                    <Button variant="primary">$ {this.props.libro.price}</Button>
-                </Card.Body>
-            </Card>
-        )
-    }
+    const cardClicked = selected === libro.asin ? 'shadowing h-100' : 'h-100'
+    return (
+        <Card className={cardClicked}>
+            <Card.Img variant="top" src={libro.img} onClick={(e) => handleClick(e)} />
+            <Card.Body className='d-flex flex-column justify-content-between'>
+                <Card.Title className='fs-5'>{libro.title}</Card.Title>
+                <Button variant="primary">$ {libro.price}</Button>
+            </Card.Body>
+        </Card>
+    )
 }
+
 
 export default SingleBook
