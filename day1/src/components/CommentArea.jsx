@@ -1,18 +1,17 @@
-import { Component } from "react";
+import { useEffect, useState } from "react";
 import CommentsList from "./CommentsList";
 import AddComment from "./AddComment";
 import Loading from "./Loading";
 import { Alert } from 'react-bootstrap'
 
-class CommentArea extends Component {
-    state = {
-        comments: [],
-        isLoaded: false,
-        isError: false,
-        reload: false
-    }
+function CommentArea({ selected }) {
+    const[comments, setComments] = useState([])
+    const[isLoaded, setIsLoaded] = useState(false)
+    const[isError, setIsError] = useState(false)
+    const[reload, setReload] = useState(false)
+    const[hasMounted, setHasMounted] = useState(false);
 
-    componentDidUpdate = (prevProps, prevState) => {
+/*     componentDidUpdate = (prevProps, prevState) => {
         if (prevProps.selected !== this.props.selected) {
             this.setState({
                 isLoaded: false
@@ -25,15 +24,15 @@ class CommentArea extends Component {
                 isLoaded: false
             })
         }
+    } */
+    
+    const reloadComments = () => {
+        setReload(!reload)
     }
-    reloadComments = () => {
-        this.setState({reload: !this.state.reload})
-    }
-    fetchComments = async () => {
+    const fetchComments = async () => {
         try {
             const URL = 'https://striveschool-api.herokuapp.com/api/comments/'
-            const asin = this.props.selected
-            const response = await fetch(URL + asin, {
+            const response = await fetch(URL + selected, {
                 headers: {
                     "Authorization": "Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI2NmM3MmM3NDI4YWI5NjAwMTU2NjRmMGUiLCJpYXQiOjE3MjQzMjkwNzYsImV4cCI6MTcyNTUzODY3Nn0.Si6MDHOC4QOt-RT6rUZF7zUYk6RqmKdoPXyQKANzAYw"
                 }
@@ -41,44 +40,49 @@ class CommentArea extends Component {
             if (response.ok) {
                 const commentsRetrieved = await response.json()
                 console.log(commentsRetrieved)
-                this.setState({
-                    comments: commentsRetrieved,
-                    isLoaded: true
-                })
+                setComments(commentsRetrieved)
+                setIsLoaded(true)
             } else {
                 throw new Error('Errore')
             }
         } catch (err) {
             alert(err)
-            this.setState({
-                isError: true,
-                isLoaded: true
-            })
+            setIsError(true)
+            setIsLoaded(true)
         }
     }
-    render() {
-        return (
-            <div className="my-3">
-                {
-                    !this.props.selected ? (
-                        <div>
-                            <h1>Nessun libro selezionato</h1>
-                        </div>
-                    ) : !this.state.isLoaded ? <Loading /> : this.state.isError ? (
-                        <Alert variant='danger'>
-                            Oops. Something went wrong
-                            <i className="bi bi-exclamation-triangle"></i>
-                        </Alert>
-                    ) : (
-                        <>
-                            <CommentsList array={this.state.comments} reload={this.reloadComments}/>
-                            <AddComment id={this.props.selected} reload={this.reloadComments}/>
-                        </>
-                    )
-                }
-            </div>
-        )
-    }
+
+    useEffect(() => {
+        if(!hasMounted) {
+            setHasMounted(true)
+            return
+        }
+        setIsLoaded(false)
+        fetchComments()
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    }, [selected, reload])
+    return (
+        <div className="my-3">
+            {
+                !selected ? (
+                    <div>
+                        <h1>Nessun libro selezionato</h1>
+                    </div>
+                ) : !isLoaded ? <Loading /> : isError ? (
+                    <Alert variant='danger'>
+                        Oops. Something went wrong
+                        <i className="bi bi-exclamation-triangle"></i>
+                    </Alert>
+                ) : (
+                    <>
+                        <CommentsList array={comments} reload={reloadComments} />
+                        <AddComment id={selected} reload={reloadComments} />
+                    </>
+                )
+            }
+        </div>
+    )
 }
+
 
 export default CommentArea
