@@ -85,7 +85,7 @@ function Movieflix(props) {
                 </Col>
             </Row>
             {
-                isLoading && (
+                isLoading ? (
                     <Row xs={1} sm={2} lg={3} xl={6} className="gy-3">
                         {spinners.map(((spinner, i) => {
                             return (
@@ -98,46 +98,44 @@ function Movieflix(props) {
                         }))
                         }
                     </Row>
+                ) : isError ? <h3 className="text-light custom-margin">Server Error - Try Later</h3> : 
+                movies.Response === 'False' ? <h3 className="text-light custom-margin">No results found</h3> : 
+                movies.Search.length < 6 ? (
+                    <Row xs={1} sm={2} lg={3} xl={6} className="gy-3">
+                        {
+                            movies.Search.map((movie) => {
+                                if (movie.Poster !== 'N/A') {
+                                    return (
+
+                                        <Col key={movie.imdbID} className="text-center">
+                                            <img src={movie.Poster} alt="" className="img-fluid customized" onClick={() => navigate('/details/' + movie.imdbID)}/>
+                                        </Col>
+
+                                    )
+
+                                } else {
+                                    return <></>
+                                }
+                            })
+                        }
+                    </Row>
+                ) : (
+                    <Slider {...settings}>
+                        {
+                            movies.Search.map((movie) => {
+                                if (movie.Poster !== 'N/A') {
+                                    return (
+                                        <div key={movie.imdbID}>
+                                            <img src={movie.Poster} alt="" className="w-100 customized" onClick={() => navigate('/details/' + movie.imdbID)}/>
+                                        </div>
+                                    )
+                                } else {
+                                    return <></>
+                                }
+                            })
+                        }
+                    </Slider>
                 )
-            }
-            {isError ? <h3 className="text-light custom-margin">Server Error - Try Later</h3> :
-                !isLoading && movies.Response === 'False' ? <h3 className="text-light custom-margin">No results found</h3> :
-                    movies.Search.length < 6 ? (
-                        <Row xs={1} sm={2} lg={3} xl={6} className="gy-3">
-                            {
-                                movies.Search.map((movie) => {
-                                    if (movie.Poster !== 'N/A') {
-                                        return (
-
-                                            <Col key={movie.imdbID} className="text-center">
-                                                <img src={movie.Poster} alt="" className="img-fluid customized" onClick={() => navigate('/details/' + movie.imdbID)}/>
-                                            </Col>
-
-                                        )
-
-                                    } else {
-                                        return <></>
-                                    }
-                                })
-                            }
-                        </Row>
-                    ) : (
-                        <Slider {...settings}>
-                            {
-                                movies.Search.map((movie) => {
-                                    if (movie.Poster !== 'N/A') {
-                                        return (
-                                            <div key={movie.imdbID}>
-                                                <img src={movie.Poster} alt="" className="w-100 customized" onClick={() => navigate('/details/' + movie.imdbID)}/>
-                                            </div>
-                                        )
-                                    } else {
-                                        return <></>
-                                    }
-                                })
-                            }
-                        </Slider>
-                    )
             }
         </Container>
     )
