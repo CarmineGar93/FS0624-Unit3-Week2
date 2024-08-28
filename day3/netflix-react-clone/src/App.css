@@ -15,3 +15,7 @@
 .customized2 {
   aspect-ratio: 14 / 16;
 }
+
+.custom-height {
+  min-height: 100vh;
+}

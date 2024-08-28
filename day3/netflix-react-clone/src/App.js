@@ -23,16 +23,14 @@ function App() {
   console.log(data);
   return (
     <BrowserRouter>
-      <Container fluid data-bs-theme="dark" className="bg-dark-subtle p-0 d-flex flex-column">
+      <Container fluid data-bs-theme="dark" className="bg-dark-subtle p-0 d-flex flex-column custom-height">
         <header>
-          <Routes>
-            
+          <Routes>            
             <Route path="/profile" element={<NavbarflixProfile />}></Route>
             <Route path="*" element={<Navbarflix childToParent={childToParent} />}></Route>
-          </Routes>
-          
+          </Routes>          
         </header>
-        <main className="py-3 px-2">
+        <main className="py-3 px-2 flex-grow-1">
           <Routes>
             <Route
               path="/"
@@ -106,7 +104,10 @@ function App() {
           </Routes>
         </main>
         <footer className="pt-5">
-          <Footerflix />
+          <Routes>            
+            <Route path="/profile" element={<></>}></Route>
+            <Route path="*" element={<Footerflix />}></Route>
+          </Routes> 
         </footer>
       </Container>
     </BrowserRouter>
