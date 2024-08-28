@@ -20,7 +20,7 @@ function MovieDetails () {
                     setMovie(data)
                     setIsLoading(false)
                 } else {
-                    navigate('/')
+                    navigate('/notfound')
                 }
                 
             } else {
