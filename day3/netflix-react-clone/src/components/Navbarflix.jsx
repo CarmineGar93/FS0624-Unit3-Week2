@@ -42,8 +42,8 @@ function Navbarflix(props) {
                                 props.childToParent('')
                                 setResearch('')
                             }}>Movies</Link>
-                        <Link to='/details' className='disabled nav-link'>Movie details</Link>
-                        <Nav.Link href="#">Movie Details</Nav.Link>
+                        <Link to='/details' className='disabled nav-link'>Movie Details</Link>
+                        <Nav.Link href="#">Add MyList</Nav.Link>
                     </Nav>
                     <Nav className='align-items-md-center '>
                         <Dropdown as={NavItem}>
