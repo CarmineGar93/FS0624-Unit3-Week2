@@ -61,7 +61,7 @@ function Navbarflix(props) {
                                         <Col xs="auto">
                                             <Form.Control
                                                 type="text"
-                                                placeholder="Search"
+                                                placeholder={location.pathname === '/shows' ? 'Search Tv Shows' : location.pathname === '/movies' ? 'Search Movies' : 'Search'}
                                                 value={research}
                                                 onChange={(e) => {
                                                     setResearch(e.target.value)
