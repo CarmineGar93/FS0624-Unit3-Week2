@@ -6,12 +6,13 @@ import Titleflix from "./components/Titleflix";
 import Footerflix from "./components/Footerflix";
 import Movieflix from "./components/Movieflix";
 import MovieDetails from "./components/MovieDetails";
-/* import NavbarflixProfile from "./components/NavbarflixProfile";
-import ProfileFlix from "./components/Profileflix"; */
+/* import NavbarflixProfile from "./components/NavbarflixProfile"; */
+import ProfileFlix from "./components/Profileflix";
 import { useState } from "react";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import NotFound from "./components/NotFound";
 
 function App() {
   const [data, setData] = useState("");
@@ -104,6 +105,8 @@ function App() {
               }
             ></Route>
             <Route path="/details/:movieId" element={<MovieDetails />}></Route>
+            <Route path="*" element={<NotFound />}></Route>
+            <Route path="/profile" element={<ProfileFlix />}></Route>
           </Routes>
         </main>
         <footer className="pt-5">

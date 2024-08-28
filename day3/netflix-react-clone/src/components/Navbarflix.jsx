@@ -49,7 +49,7 @@ function Navbarflix(props) {
                         <Dropdown as={NavItem}>
                             <Dropdown.Toggle as={NavLink}><img alt='' src='kids_icon.png' width={30}></img></Dropdown.Toggle>
                             <Dropdown.Menu>
-                                <Dropdown.Item>Profile</Dropdown.Item>
+                                <Dropdown.Item><Link className='nav-link' to='/profile'>Profile</Link></Dropdown.Item>
                                 <Dropdown.Item>Settings</Dropdown.Item>
                             </Dropdown.Menu>
                         </Dropdown>
