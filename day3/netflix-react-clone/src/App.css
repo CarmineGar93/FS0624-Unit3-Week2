@@ -1,0 +1,17 @@
+.customized {
+  aspect-ratio: 12 / 16;
+  transition: transform 0.2s;
+}
+
+.customized:hover {
+  transform: scale(1.1);
+  cursor: pointer;
+}
+
+.custom-margin {
+  margin-bottom: 40vh;
+}
+
+.customized2 {
+  aspect-ratio: 14 / 16;
+}
