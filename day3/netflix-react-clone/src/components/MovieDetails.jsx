@@ -1,6 +1,7 @@
 import { Container, Row, Col, Card, Button, Spinner, ListGroup, ListGroupItem} from "react-bootstrap"
 import { useParams, useNavigate } from 'react-router-dom'
 import { useEffect, useState } from "react"
+import  logostar  from '../star.svg'
 
 function MovieDetails () {
     const navigate = useNavigate()
@@ -90,9 +91,25 @@ function MovieDetails () {
                                             <ListGroupItem>No Comments Found</ListGroupItem>
                                         ) : (
                                             comments.map((comment) => {
+                                                const star = []
+                                                for (let i = 0; i < comment.rate; i++) {
+                                                    star.push(<span key={i} className="d-flex align-items-center"><img src={logostar} alt="" /></span>)
+                                                }
                                                 return (
-                                                    <ListGroupItem key={comment._id}>{comment.comment}</ListGroupItem>
-                                                )
+                                                    <ListGroup.Item key={comment._id} className="d-flex align-items-center">
+                                                        <div className="ms-1">
+                                                            <div className="d-flex align-items-center">
+                                                                <i>Rate: &nbsp;</i>
+                                                                {
+                                                                    star.map((stars) => {
+                                                                        return stars
+                                                                    })
+                                                                }
+                                                            </div>
+                        
+                                                            <span><i>Commento:</i> {comment.comment} </span>
+                                                        </div>
+                                                    </ListGroup.Item>)
                                             })
                                         )
                                         }
