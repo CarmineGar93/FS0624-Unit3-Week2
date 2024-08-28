@@ -6,7 +6,7 @@ import Titleflix from "./components/Titleflix";
 import Footerflix from "./components/Footerflix";
 import Movieflix from "./components/Movieflix";
 import MovieDetails from "./components/MovieDetails";
-/* import NavbarflixProfile from "./components/NavbarflixProfile"; */
+import NavbarflixProfile from "./components/NavbarflixProfile";
 import ProfileFlix from "./components/Profileflix";
 import { useState } from "react";
 import "slick-carousel/slick/slick.css";
@@ -23,18 +23,14 @@ function App() {
   console.log(data);
   return (
     <BrowserRouter>
-      <Container fluid data-bs-theme="dark" className="bg-dark-subtle p-0">
-        {/*Questa è la pagina profile*/}
-        {/* <Container className="py-5" datadata-bs-theme="dark">
-          <header>
-              <NavbarflixProfile />
-          </header>
-          <main className="py-5">
-            <ProfileFlix />
-          </main>
-      </Container> */}
+      <Container fluid data-bs-theme="dark" className="bg-dark-subtle p-0 d-flex flex-column">
         <header>
-          <Navbarflix childToParent={childToParent} />
+          <Routes>
+            
+            <Route path="/profile" element={<NavbarflixProfile />}></Route>
+            <Route path="*" element={<Navbarflix childToParent={childToParent} />}></Route>
+          </Routes>
+          
         </header>
         <main className="py-3 px-2">
           <Routes>

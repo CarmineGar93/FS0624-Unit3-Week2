@@ -1,10 +1,14 @@
-import {Navbar, NavbarBrand} from 'react-bootstrap'
+import { Navbar, NavbarBrand } from 'react-bootstrap'
+import { Link } from 'react-router-dom'
 
-function NavbarflixProfile () {
+function NavbarflixProfile() {
     return (
         <Navbar>
             <NavbarBrand>
-                <img src="netflix_logo.png" alt="" width={150}/>
+                <Link className=' navbar-brand' to='/'>
+                    <img src="netflix_logo.png" alt="" width={150} />
+                </Link>
+
             </NavbarBrand>
         </Navbar>
     )
