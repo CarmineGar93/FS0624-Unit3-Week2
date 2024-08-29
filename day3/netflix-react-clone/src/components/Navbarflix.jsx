@@ -2,7 +2,7 @@ import { Navbar, Container, Nav, NavItem, Dropdown, NavLink, Form, Row, Col, But
 import search from '../search.svg'
 import bell from '../bell.svg'
 import { useState } from 'react'
-import { Link, useLocation } from 'react-router-dom'
+import { Link, useLocation, useParams } from 'react-router-dom'
 
 function Navbarflix(props) {
     const [isHovered, setIsHovered] = useState(false)
@@ -13,6 +13,8 @@ function Navbarflix(props) {
         props.childToParent(research)
 
     }
+    const params = useParams()
+    console.log(params)
     const location = useLocation()
     const isActive = (search) => {
         return location.pathname === search ? 'nav-link active' : 'nav-link'
@@ -42,7 +44,7 @@ function Navbarflix(props) {
                                 props.childToParent('')
                                 setResearch('')
                             }}>Movies</Link>
-                        <Link to='/details' className='disabled nav-link'>Movie Details</Link>
+                        <Link to='/details' className={location.pathname === `/details/${params.movieId}` ? 'nav-link active' : 'nav-link'}>Movie Details</Link>
                     </Nav>
                     <Nav className='align-items-md-center '>
                         <Dropdown as={NavItem}>

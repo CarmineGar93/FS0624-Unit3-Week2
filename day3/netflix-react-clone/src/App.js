@@ -27,6 +27,7 @@ function App() {
         <header>
           <Routes>            
             <Route path="/profile" element={<NavbarflixProfile />}></Route>
+            <Route path="/details/:movieId" element={<Navbarflix childToParent={childToParent} />}></Route>
             <Route path="*" element={<Navbarflix childToParent={childToParent} />}></Route>
           </Routes>          
         </header>
