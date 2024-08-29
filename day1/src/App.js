@@ -24,11 +24,6 @@ function App() {
       <main>
         <Welcome />
         <BookList array={all} />
-        {/* <AllTheBooks genere="fantasy"/>
-        <AllTheBooks genere="horror"/>
-        <AllTheBooks genere="history"/>
-        <AllTheBooks genere="romance"/>
-        <AllTheBooks genere="scifi"/> */}
         <div className='mb-5 invisible'>a</div>
       </main>
       <MyFooter />
