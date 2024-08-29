@@ -28,7 +28,7 @@ function BookList({ array }) {
                                 <Form.Group className="mb-3">
                                     <Form.Control type="text" placeholder="Ricerca"
                                         value={searched}
-                                        onChange={(e) => handleChange(e)} required />
+                                        onChange={(e) => handleChange(e)} required data-testid='ricerca'/>
                                 </Form.Group>
                             </Form>
                         </Col>

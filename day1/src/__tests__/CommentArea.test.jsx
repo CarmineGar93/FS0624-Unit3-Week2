@@ -25,6 +25,8 @@ describe('Comment area with a book selected', ()=>{
         const imgs = screen.getAllByRole('img')
         fireEvent.click(imgs[1])
         const inviaBtn = await screen.findByText(/Invia recensione/)
+        const listgroup = await screen.findAllByTestId('list-item')
+        expect(listgroup.length).toBeGreaterThan(1)
         expect(inviaBtn).toBeInTheDocument()
 
     })

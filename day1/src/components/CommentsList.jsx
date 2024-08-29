@@ -39,7 +39,7 @@ function CommentsList({ array, reload }) {
                             star.push(<span key={i} className="d-flex align-items-center"><img src={logostar} alt="" /></span>)
                         }
                         return (
-                            <ListGroup.Item key={libro._id} className="d-flex align-items-center">
+                            <ListGroup.Item key={libro._id} className="d-flex align-items-center" data-testid='list-item'>
                                 <div className="ms-1">
                                     <div className="d-flex align-items-center">
                                         <i>Rate: &nbsp;</i>
