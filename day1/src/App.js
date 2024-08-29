@@ -14,7 +14,7 @@ import scifi from './data/scifi.json'
 import '../node_modules/bootstrap/dist/css/bootstrap.min.css'
 
 
-const all = fantasy.concat(history.concat(horror.concat(romance.concat(scifi))))
+export const all = fantasy.concat(history.concat(horror.concat(romance.concat(scifi))))
 function App() {
   return (
     <div>
