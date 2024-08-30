@@ -1,5 +1,5 @@
 import Welcome from "../components/Welcome";
-import { fireEvent, render, screen, waitFor} from  '@testing-library/react'
+import { fireEvent, render, screen, waitFor, waitForElementToBeRemoved} from  '@testing-library/react'
 
 
 describe('Alert function', () => {
@@ -8,12 +8,17 @@ describe('Alert function', () => {
         const alert = screen.getByRole('alert')
         expect(alert).toBeInTheDocument()
     });
-    it('should disappear once the button is clicked', async() => {
+/*     it('should disappear once the button is clicked', async() => {
         render(<Welcome></Welcome>)
         fireEvent.click(screen.getByText(/Close me/i));
         await waitFor(() => {
             expect(screen.queryByText(/Benvenuto\/a/i)).toBeNull();
         })
+    }) */
+    it('should disappear once the button is clicked', async() => {
+        render(<Welcome></Welcome>)
+        fireEvent.click(screen.getByText(/Close me/i));
+        await waitForElementToBeRemoved(()=>screen.queryByRole('alert'))
     })
     it('should re-appear if i click twice', async() => {
         render(<Welcome></Welcome>)
